@@ -113,7 +113,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "05744f3a68fa59c75327";
+/******/ 	var hotCurrentHash = "9c62fac996334bb63563";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1373,7 +1373,7 @@ function (_React$PureComponent) {
             data: list
           });
         })["catch"](function (err) {});
-      }, 0.1 * 60 * 1000);
+      }, 5 * 60 * 1000);
     }
   }, {
     key: "componentDidMount",

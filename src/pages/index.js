@@ -47,7 +47,7 @@ export default class Page extends React.PureComponent {
                     data: list
                 });
             }).catch(err => {});
-        }, 0.1 * 60 * 1000);
+        }, 5 * 60 * 1000);
     }
     componentDidMount() {
         this.setState({
