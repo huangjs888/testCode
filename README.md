@@ -11,7 +11,7 @@ React技术栈实现一个职位列表展示的功能
 1. npm install (安装依赖)
 2. npm start (启动)
 3. npm run build (打包)
-4. 打开http://localhost:9090即可
+4. 本地打开：http://localhost:9090 即可
 
 
 在线预览地址:[https://hugh-888.github.io/testCode/](https://hugh-888.github.io/testCode/ "预览")
