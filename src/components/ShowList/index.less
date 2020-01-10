@@ -1,0 +1,75 @@
+a,
+a:hover,
+a:visited,
+a:active,
+a:focus {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.newPosition-list {
+    width: 850px;
+    height: 300px;
+    background: #FFFFFF;
+    box-shadow: 0 0 15px 0 rgba(31, 56, 88, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    margin: 50px auto;
+
+    .more-positon {
+        height: 49px;
+        border-bottom: 1px solid rgba(31, 56, 88, 0.06);
+        line-height: 49px;
+        padding: 0 14px;
+        background: white;
+        font-size: 14px;
+        color: #000000;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+
+        .more-position-click {
+            font-size: 14px;
+            color: rgba(31, 56, 88, 0.60);
+        }
+    }
+
+    .position-list {
+        position: absolute;
+        z-index: 1;
+        top: 50px;
+        width: 100%;
+
+        .scroll-li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 14px;
+            overflow: hidden;
+            line-height: 50px;
+
+            .position {
+                flex-basis:48%;
+                color: #3C99D8;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .time,
+            .city {
+                font-style: normal;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.60);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .time{
+                flex-basis:8.5%;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "testCode",
+  "version": "1.0.0",
+  "description": "Show job list",
+  "repository": "https://github.com/Hugh-888/testCode.git",
+  "author": "Hugh-888 <1170384651@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/runtime": "^7.7.7",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.1",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "path": "^0.12.7",
+    "style-loader": "^1.1.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "yargs": "^15.1.0"
+  },
+  "dependencies": {
+    "fetch-jsonp": "^1.1.3",
+    "isomorphic-fetch": "^2.2.1",
+    "querystring": "^0.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
