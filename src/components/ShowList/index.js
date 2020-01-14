@@ -6,70 +6,65 @@ import Item from './item';
 import './index.less';
 
 export default class ShowList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            top: 50,
-            dataFirst: props.list,
-            dataSecond: props.list
-        };
-    }
-    getTimerAnimation() {
-        return setInterval(_ => {
-            let { top, dataSecond } = this.state;
-            this.setState({
-                top: top - 1
-            });
-            if (top <= -950) {
-                this.setState({
-                    top: 50,
-                    dataFirst: dataSecond,
-                    dataSecond: this.props.list
-                });
-            }
-        }, 40);
-    }
-    mouseOver() {
+    mouseOver = () => {
         clearInterval(this.timerAnimation);
     }
-    mouseOut() {
+    mouseOut = () => {
         this.timerAnimation = this.getTimerAnimation();
     }
-    componentWillReceiveProps(nextProps) {
-        let { top } = this.state;
-        if (top > -650 && top <= 0) {
-            this.setState({
-                dataSecond: nextProps.list
-            });
-        }
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextState.top !== this.state.top ||
-            nextState.dataSecond !== this.state.dataSecond ||
-            nextState.dataFirst !== this.state.dataFirst;
+    constructor(props) {
+        super(props);
+        this.dataA = this.dataB = props.list;
+        this.state = {
+            top: 50
+        };
     }
     componentDidMount() {
         this.timerAnimation = this.getTimerAnimation();
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        //防止过来新的list会渲染数据
+        return nextState.top !== this.state.top;
+    }
     componentWillUnmount() {
         clearInterval(this.timerAnimation);
     }
+    getTimerAnimation() {
+        //定义一个定时器，每隔40毫秒将向上移动1像素
+        return setInterval(_ => {
+            let { top, data } = this.state;
+            top -= 1;
+            //如果移动到第一部分的底端，则立马重头开始移动
+            if (top <= -950) {
+                this.dataA = this.dataB;
+                top = 50;
+            }
+            //只有当第一部分和第二部分交界处不在可视区域的时候才更新新的list
+            if (top > -650 && top <= 0){
+                this.dataB = this.props.list;
+            }
+            this.setState({
+                top
+            });
+        }, 20);
+    }
     render() {
         const { title, moreUrl, parse } = this.props;
-        const { top, dataFirst, dataSecond } = this.state;
-        const listStyle = { top: `${top}px` };
-        let length = dataFirst.length;
+        const listStyle = { top: `${this.state.top}px` };
+        let dataA = this.dataA,
+            dataB = this.dataB,
+            length = dataA.length;
         return (
             <div className="newPosition-list">
               <Title url={moreUrl}>{title}</Title>
               <div className="position-list"
-                onMouseOver={this.mouseOver.bind(this)}
-                onMouseOut={this.mouseOut.bind(this)}
+                onMouseOver={this.mouseOver}
+                onMouseOut={this.mouseOut}
                 style={listStyle}>
-                {dataFirst.map( (it, i) => {
+                {dataA.map( (it, i) => {
                     return <Item key={i} item={parse(it)} />
                 })}
-                {dataSecond.map( (it, i) => {
+                {dataB.map( (it, i) => {
                     return <Item key={length + i} item={parse(it)} />
                 })}
               </div>

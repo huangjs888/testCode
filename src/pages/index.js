@@ -9,45 +9,11 @@ import './index.less';
 export default class Page extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.bol =  true;
         this.state = {
             loading: true,
             data: []
         };
-    }
-    parse(item) {
-        return {
-            name: item.name,
-            url: `${api.jobUrl}positionCode=${item.code}`,
-            city: item.workLocation,
-            time: item.applyTimeDesc
-        };
-    }
-    fetch() {
-        return new Promise((resolve, reject) => {
-            /*request(api.jobList).then((content) => {
-                if (!content.isSuccess) {
-                    let error = new Error('获取数据不成功');
-                    reject(error);
-                    console.error(error.message);
-                } else resolve(content.returnValue);
-            }).catch((error) => {
-                reject(error);
-                console.error(error.message);
-            });*/
-
-            import('../../data/data').then(data => {
-                resolve(data.default().returnValue)
-            });
-        });
-    }
-    getTimerFetch() {
-        return setInterval(_ => {
-            this.fetch().then(list => {
-                this.setState({
-                    data: list
-                });
-            }).catch(err => {});
-        }, 5 * 60 * 1000);
     }
     componentDidMount() {
         this.setState({
@@ -66,6 +32,41 @@ export default class Page extends React.PureComponent {
     }
     componentWillUnmount() {
         clearInterval(this.timerFetch);
+    }
+    fetch() {
+        return new Promise((resolve, reject) => {
+            /*request(api.jobList).then((content) => {
+                if (!content.isSuccess) {
+                    let error = new Error('获取数据不成功');
+                    reject(error);
+                    console.error(error.message);
+                } else resolve(content.returnValue);
+            }).catch((error) => {
+                reject(error);
+                console.error(error.message);
+            });*/
+
+            import('../../data/data').then(data => {
+                resolve(data.default(this.bol= !this.bol).returnValue)
+            });
+        });
+    }
+    getTimerFetch() {
+        return setInterval(_ => {
+            this.fetch().then(list => {
+                this.setState({
+                    data: list
+                });
+            }).catch(err => {});
+        }, 5 * 60 * 1000);
+    }
+    parse(item) {
+        return {
+            name: item.name,
+            url: `${api.jobUrl}positionCode=${item.code}`,
+            city: item.workLocation,
+            time: item.applyTimeDesc
+        };
     }
     render() {
         const { loading, data } = this.state;

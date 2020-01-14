@@ -1,4 +1,4 @@
-export default function() {
+/*export default function() {
     return {
         "isSuccess": true,
         "exceptionDesc": "成功",
@@ -404,8 +404,8 @@ export default function() {
             }
         ]
     };
-}
-/*export default function(s) {
+}*/
+export default function(s) {
     return s ? {
         "isSuccess": true,
         "exceptionDesc": "成功",
@@ -1199,4 +1199,4 @@ export default function() {
             },
         ]
     };
-}*/
+}
